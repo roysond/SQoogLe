@@ -12,7 +12,7 @@
 	/>
 	<style>
 		:root {
-			--bg: #f8f9fb;
+			--bg: #f6f9fe;
 			--panel: #ffffff;
 			--ink: #202124;
 			--muted: #5f6368;
@@ -21,9 +21,8 @@
 			--border: #dde3eb;
 			--success: #188038;
 			--error: #d93025;
-			--radius: 20px;
-			--shadow: 0 10px 28px rgba(45, 67, 103, 0.08);
-			--ring: 0 0 0 4px rgba(26, 115, 232, 0.16);
+			--shadow: 0 12px 28px rgba(45, 67, 103, 0.1);
+			--radius: 18px;
 		}
 
 		* {
@@ -35,24 +34,20 @@
 			font-family: "Google Sans", "Product Sans", "Roboto", "Segoe UI", Arial, sans-serif;
 			color: var(--ink);
 			background:
-				radial-gradient(circle at 15% 14%, rgba(26, 115, 232, 0.1), transparent 24%),
-				radial-gradient(circle at 85% 12%, rgba(15, 157, 88, 0.1), transparent 26%),
-				radial-gradient(circle at 52% 94%, rgba(244, 180, 0, 0.12), transparent 22%),
+				radial-gradient(circle at 12% 14%, rgba(66, 133, 244, 0.14), transparent 22%),
+				radial-gradient(circle at 88% 14%, rgba(52, 168, 83, 0.14), transparent 24%),
+				radial-gradient(circle at 55% 92%, rgba(251, 188, 5, 0.14), transparent 24%),
 				var(--bg);
 			min-height: 100vh;
-			padding: 26px;
-		}
-
-		main {
-			position: relative;
+			padding: 24px;
 		}
 
 		.app {
-			max-width: 1120px;
+			max-width: 1080px;
 			margin: 0 auto;
 			display: grid;
-			grid-template-columns: 340px 1fr;
-			gap: 20px;
+			grid-template-columns: 330px 1fr;
+			gap: 18px;
 			animation: rise 500ms ease-out;
 		}
 
@@ -65,11 +60,11 @@
 		}
 
 		.panel:hover {
-			box-shadow: 0 12px 34px rgba(45, 67, 103, 0.11);
+			box-shadow: 0 16px 34px rgba(45, 67, 103, 0.13);
 		}
 
 		.sidebar {
-			padding: 22px;
+			padding: 20px;
 			align-self: start;
 			position: sticky;
 			top: 20px;
@@ -80,69 +75,37 @@
 			font-size: 2rem;
 			letter-spacing: -0.3px;
 			font-weight: 800;
-			line-height: 1;
 		}
 
-		.brand-row {
-			margin-top: 10px;
+		.logo .blue { color: #4285f4; }
+		.logo .red { color: #ea4335; }
+		.logo .yellow { color: #fbbc05; }
+		.logo .green { color: #34a853; }
+
+		.badge {
 			display: inline-flex;
 			align-items: center;
 			gap: 8px;
+			margin-top: 8px;
 			padding: 6px 10px;
-			border: 1px solid #e1e7f0;
 			border-radius: 999px;
+			border: 1px solid #e1e7f0;
 			background: #ffffff;
+			font-size: 0.8rem;
+			color: #5f6368;
+			font-weight: 600;
 		}
 
-		.dot {
+		.badge-dot {
 			width: 8px;
 			height: 8px;
 			border-radius: 50%;
 		}
 
-		.dot.blue {
-			background: #4285f4;
-		}
-
-		.dot.red {
-			background: #ea4335;
-		}
-
-		.dot.yellow {
-			background: #fbbc05;
-		}
-
-		.dot.green {
-			background: #34a853;
-		}
-
-		.brand-row span {
-			font-size: 0.8rem;
-			font-weight: 600;
-			color: #5f6368;
-		}
-
-		.logo .blue {
-			color: #1a73e8;
-		}
-
-		.logo .red {
-			color: #ea4335;
-		}
-
-		.logo .yellow {
-			color: #fbbc05;
-		}
-
-		.logo .green {
-			color: #34a853;
-		}
-
 		.tag {
-			margin-top: 4px;
+			margin-top: 6px;
 			color: var(--muted);
-			font-size: 1rem;
-			line-height: 1.4;
+			font-size: 0.95rem;
 		}
 
 		.field-group {
@@ -152,7 +115,7 @@
 		}
 
 		label {
-			font-size: 0.92rem;
+			font-size: 0.9rem;
 			font-weight: 700;
 			color: #3c4043;
 		}
@@ -163,16 +126,6 @@
 			font: inherit;
 		}
 
-		.model-display {
-			width: 100%;
-			border: 1px solid #d0d7e2;
-			border-radius: 12px;
-			padding: 12px 13px;
-			color: #3c4043;
-			background: #f8fafd;
-			font-weight: 500;
-		}
-
 		input,
 		textarea {
 			width: 100%;
@@ -181,7 +134,7 @@
 			padding: 12px 13px;
 			color: var(--ink);
 			background: #ffffff;
-			transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+			transition: border-color 0.18s ease, box-shadow 0.18s ease;
 		}
 
 		textarea {
@@ -196,13 +149,13 @@
 		textarea:focus {
 			outline: none;
 			border-color: var(--brand);
-			box-shadow: var(--ring);
+			box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.16);
 		}
 
 		.hint {
 			margin-top: 8px;
 			color: var(--muted);
-			font-size: 0.83rem;
+			font-size: 0.82rem;
 			line-height: 1.35;
 		}
 
@@ -219,7 +172,7 @@
 			padding: 10px 16px;
 			font-weight: 600;
 			cursor: pointer;
-			transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+			transition: transform 0.14s ease, filter 0.14s ease;
 		}
 
 		.btn:disabled {
@@ -234,11 +187,7 @@
 		.btn-primary {
 			background: var(--brand);
 			color: #fff;
-			box-shadow: 0 4px 10px rgba(26, 115, 232, 0.33);
-		}
-
-		.btn-primary:hover:not(:disabled) {
-			background: #1765cc;
+			box-shadow: 0 5px 12px rgba(26, 115, 232, 0.32);
 		}
 
 		.btn-clear {
@@ -247,20 +196,15 @@
 			color: #445261;
 		}
 
-		.btn-clear:hover:not(:disabled) {
-			background: #f5f8fc;
-		}
-
 		.chat {
 			display: flex;
 			flex-direction: column;
-			min-height: 640px;
+			min-height: 620px;
 			overflow: hidden;
-			position: relative;
 		}
 
 		.chat-head {
-			padding: 18px 20px;
+			padding: 16px 18px;
 			border-bottom: 1px solid var(--border);
 			display: flex;
 			align-items: center;
@@ -268,25 +212,14 @@
 			background: linear-gradient(180deg, #ffffff, #f9fbff);
 		}
 
-		.chat-head::before {
-			content: "";
-			position: absolute;
-			left: 16px;
-			right: 16px;
-			top: 64px;
-			height: 1px;
-			background: linear-gradient(90deg, transparent, rgba(26, 115, 232, 0.25), transparent);
-			pointer-events: none;
-		}
-
 		.chat-head h2 {
 			margin: 0;
-			font-size: 1.1rem;
-			font-weight: 800;
+			font-size: 1.08rem;
+			font-weight: 700;
 		}
 
 		.status {
-			font-size: 0.8rem;
+			font-size: 0.83rem;
 			font-weight: 700;
 			color: var(--success);
 			background: #e6f4ea;
@@ -302,27 +235,13 @@
 		}
 
 		.chat-body {
-			padding: 20px;
+			padding: 18px;
 			overflow-y: auto;
 			display: grid;
-			gap: 14px;
+			gap: 12px;
 			flex: 1;
 			align-content: start;
 			background: #fcfdff;
-		}
-
-		.chat-body::-webkit-scrollbar {
-			width: 10px;
-		}
-
-		.chat-body::-webkit-scrollbar-track {
-			background: #f4f7fb;
-		}
-
-		.chat-body::-webkit-scrollbar-thumb {
-			background: #c8d6ee;
-			border-radius: 999px;
-			border: 2px solid #f4f7fb;
 		}
 
 		.bubble {
@@ -333,7 +252,6 @@
 			white-space: pre-wrap;
 			border: 1px solid #dce3ed;
 			animation: pop 220ms ease;
-			box-shadow: 0 2px 8px rgba(63, 85, 120, 0.08);
 		}
 
 		.bubble.user {
@@ -351,15 +269,9 @@
 		.bubble .title {
 			font-size: 0.8rem;
 			font-weight: 800;
-			letter-spacing: 0.2px;
 			color: #5f6368;
 			margin-bottom: 7px;
 			display: block;
-		}
-
-		.bubble b,
-		.bubble strong {
-			font-weight: 700;
 		}
 
 		.result-card {
@@ -399,7 +311,7 @@
 		}
 
 		.typing {
-			opacity: 0.86;
+			opacity: 0.88;
 			font-style: italic;
 			color: #4f6072;
 		}
@@ -439,8 +351,10 @@
 				min-height: 560px;
 			}
 
-			body {
-				padding: 16px;
+			.chat-head {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 10px;
 			}
 		}
 	</style>
@@ -450,12 +364,12 @@
 		<section class="panel sidebar">
 			<h1 class="logo"><span class="blue">S</span><span class="red">Q</span><span class="yellow">o</span><span class="blue">o</span><span class="green">g</span><span class="red">L</span><span class="blue">e</span></h1>
 			<p class="tag">Decode SQL, one line at a time.</p>
-			<div class="brand-row">
-				<i class="dot blue"></i>
-				<i class="dot red"></i>
-				<i class="dot yellow"></i>
-				<i class="dot green"></i>
-				<span>Google-inspired experience</span>
+			<div class="badge">
+				<i class="badge-dot" style="background:#4285f4"></i>
+				<i class="badge-dot" style="background:#ea4335"></i>
+				<i class="badge-dot" style="background:#fbbc05"></i>
+				<i class="badge-dot" style="background:#34a853"></i>
+				<span>Google-inspired workspace look</span>
 			</div>
 
 			<div class="field-group">
@@ -466,8 +380,7 @@
 
 			<div class="field-group">
 				<label for="model">Model name</label>
-				<div class="model-display" aria-label="Model name">gpt-4.1-mini</div>
-				<input id="model" type="hidden" value="gpt-4.1-mini" />
+				<input id="model" value="gpt-4.1-mini" />
 			</div>
 
 			<div class="field-group">
@@ -477,6 +390,7 @@
 
 			<div class="actions">
 				<button id="explainBtn" class="btn btn-primary">Explain Query</button>
+				<button id="randomBtn" class="btn btn-clear" type="button">Random SQL</button>
 				<button id="clearBtn" class="btn btn-clear">Clear Chat</button>
 			</div>
 		</section>
@@ -500,9 +414,45 @@
 		const modelInput = document.getElementById("model");
 		const queryInput = document.getElementById("query");
 		const explainBtn = document.getElementById("explainBtn");
+		const randomBtn = document.getElementById("randomBtn");
 		const clearBtn = document.getElementById("clearBtn");
 		const chatBody = document.getElementById("chatBody");
 		const statusPill = document.getElementById("status");
+
+		const sampleQueries = [
+			[
+				"SELECT customer_name, city",
+				"FROM customers",
+				"WHERE city = 'Mumbai';",
+			].join("\n"),
+			[
+				"SELECT department, COUNT(*) AS total_employees",
+				"FROM employees",
+				"GROUP BY department",
+				"ORDER BY total_employees DESC;",
+			].join("\n"),
+			[
+				"SELECT p.product_name, c.category_name",
+				"FROM products p",
+				"INNER JOIN categories c ON p.category_id = c.id",
+				"WHERE p.price > 500;",
+			].join("\n"),
+			[
+				"SELECT order_id, order_date, total_amount",
+				"FROM orders",
+				"WHERE order_date >= '2025-01-01'",
+				"ORDER BY order_date DESC",
+				"LIMIT 5;",
+			].join("\n"),
+			[
+				"SELECT student_name, marks",
+				"FROM students",
+				"WHERE marks = (",
+				"    SELECT MAX(marks)",
+				"    FROM students",
+				");",
+			].join("\n"),
+		];
 
 		function setStatus(text, isError = false) {
 			statusPill.textContent = text;
@@ -529,9 +479,7 @@
 
 		function formatNumberedSql(sqlText) {
 			const lines = sqlText.split("\n");
-			return lines
-				.map((line, idx) => `${idx + 1}. ${line}`)
-				.join("\n");
+			return lines.map((line, idx) => `${idx + 1}. ${line}`).join("\n");
 		}
 
 		function extractJson(text) {
@@ -559,21 +507,19 @@
 			const lines = Array.isArray(data.lines) ? data.lines : [];
 			const tips = Array.isArray(data.tips) ? data.tips : [];
 
-			const lineHtml = lines
-				.map((item) => {
-					const lineNo = Number.isFinite(item.lineNumber) ? item.lineNumber : "?";
-					const sql = escapeHtml(item.sql || "");
-					const explanation = escapeHtml(item.explanation || "");
+			const lineHtml = lines.map((item) => {
+				const lineNo = Number.isFinite(item.lineNumber) ? item.lineNumber : "?";
+				const sql = escapeHtml(item.sql || "");
+				const explanation = escapeHtml(item.explanation || "");
 
-					return `
-						<div class="line-item">
-							<strong>Line ${lineNo}</strong>
-							<span class="line-sql">${sql || "(empty line)"}</span>
-							<div>${explanation || "No explanation"}</div>
-						</div>
-					`;
-				})
-				.join("");
+				return `
+					<div class="line-item">
+						<strong>Line ${lineNo}</strong>
+						<span class="line-sql">${sql || "(empty line)"}</span>
+						<div>${explanation || "No explanation"}</div>
+					</div>
+				`;
+			}).join("");
 
 			const tipsHtml = tips.length
 				? `<ul class="tips">${tips.map((tip) => `<li>${escapeHtml(String(tip))}</li>`).join("")}</ul>`
@@ -585,6 +531,13 @@
 				<div class="result-card">${lineHtml || "<div>No line-level explanation returned.</div>"}</div>
 				${tipsHtml}
 			`;
+		}
+
+		function loadRandomQuery() {
+			const randomIndex = Math.floor(Math.random() * sampleQueries.length);
+			queryInput.value = sampleQueries[randomIndex];
+			queryInput.focus();
+			setStatus("Sample loaded");
 		}
 
 		async function explainSql() {
@@ -682,6 +635,8 @@
 		}
 
 		explainBtn.addEventListener("click", explainSql);
+
+		randomBtn.addEventListener("click", loadRandomQuery);
 
 		queryInput.addEventListener("keydown", (event) => {
 			if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
