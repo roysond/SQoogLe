@@ -12,7 +12,8 @@
 	/>
 	<style>
 		:root {
-			--bg: #f6f9fe;
+			--bg: #f3f7ff;
+			--bg-2: #eef3ff;
 			--panel: #ffffff;
 			--ink: #202124;
 			--muted: #5f6368;
@@ -21,7 +22,7 @@
 			--border: #dde3eb;
 			--success: #188038;
 			--error: #d93025;
-			--shadow: 0 12px 28px rgba(45, 67, 103, 0.1);
+			--shadow: 0 14px 34px rgba(45, 67, 103, 0.12);
 			--radius: 18px;
 		}
 
@@ -34,12 +35,25 @@
 			font-family: "Google Sans", "Product Sans", "Roboto", "Segoe UI", Arial, sans-serif;
 			color: var(--ink);
 			background:
-				radial-gradient(circle at 12% 14%, rgba(66, 133, 244, 0.14), transparent 22%),
-				radial-gradient(circle at 88% 14%, rgba(52, 168, 83, 0.14), transparent 24%),
-				radial-gradient(circle at 55% 92%, rgba(251, 188, 5, 0.14), transparent 24%),
+				radial-gradient(circle at 12% 14%, rgba(66, 133, 244, 0.16), transparent 24%),
+				radial-gradient(circle at 88% 14%, rgba(52, 168, 83, 0.16), transparent 26%),
+				radial-gradient(circle at 55% 92%, rgba(251, 188, 5, 0.16), transparent 26%),
 				var(--bg);
 			min-height: 100vh;
 			padding: 24px;
+			position: relative;
+			overflow-x: hidden;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background:
+				radial-gradient(circle, rgba(26, 115, 232, 0.12) 1px, transparent 1px) 0 0 / 18px 18px,
+				linear-gradient(145deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+			opacity: 0.25;
+			pointer-events: none;
 		}
 
 		.app {
@@ -47,8 +61,10 @@
 			margin: 0 auto;
 			display: grid;
 			grid-template-columns: 330px 1fr;
-			gap: 18px;
+			gap: 20px;
 			animation: rise 500ms ease-out;
+			position: relative;
+			z-index: 1;
 		}
 
 		.panel {
@@ -56,11 +72,20 @@
 			border: 1px solid var(--border);
 			border-radius: var(--radius);
 			box-shadow: var(--shadow);
-			transition: box-shadow 0.2s ease;
+			transition: box-shadow 0.2s ease, transform 0.2s ease;
+			backdrop-filter: blur(8px);
+		}
+
+		.panel:focus-within {
+			border-color: #b6cdfb;
+			box-shadow:
+				0 0 0 4px rgba(66, 133, 244, 0.16),
+				0 18px 38px rgba(45, 67, 103, 0.14);
 		}
 
 		.panel:hover {
 			box-shadow: 0 16px 34px rgba(45, 67, 103, 0.13);
+			transform: translateY(-1px);
 		}
 
 		.sidebar {
@@ -68,6 +93,8 @@
 			align-self: start;
 			position: sticky;
 			top: 20px;
+			background:
+				linear-gradient(165deg, rgba(232, 240, 254, 0.58), rgba(255, 255, 255, 0.96));
 		}
 
 		.logo {
@@ -75,6 +102,7 @@
 			font-size: 2rem;
 			letter-spacing: -0.3px;
 			font-weight: 800;
+			line-height: 1.02;
 		}
 
 		.logo .blue { color: #4285f4; }
@@ -106,6 +134,7 @@
 			margin-top: 6px;
 			color: var(--muted);
 			font-size: 0.95rem;
+			line-height: 1.4;
 		}
 
 		.field-group {
@@ -118,6 +147,7 @@
 			font-size: 0.9rem;
 			font-weight: 700;
 			color: #3c4043;
+			letter-spacing: 0.1px;
 		}
 
 		input,
@@ -134,7 +164,7 @@
 			padding: 12px 13px;
 			color: var(--ink);
 			background: #ffffff;
-			transition: border-color 0.18s ease, box-shadow 0.18s ease;
+			transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.2s ease;
 		}
 
 		textarea {
@@ -150,6 +180,7 @@
 			outline: none;
 			border-color: var(--brand);
 			box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.16);
+			background: #fbfdff;
 		}
 
 		.hint {
@@ -164,6 +195,7 @@
 			display: flex;
 			gap: 10px;
 			flex-wrap: wrap;
+			padding-top: 4px;
 		}
 
 		.btn {
@@ -172,7 +204,7 @@
 			padding: 10px 16px;
 			font-weight: 600;
 			cursor: pointer;
-			transition: transform 0.14s ease, filter 0.14s ease;
+			transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.2s ease;
 		}
 
 		.btn:disabled {
@@ -182,10 +214,11 @@
 
 		.btn:hover:not(:disabled) {
 			transform: translateY(-1px);
+			box-shadow: 0 6px 12px rgba(26, 115, 232, 0.14);
 		}
 
 		.btn-primary {
-			background: var(--brand);
+			background: linear-gradient(140deg, #1a73e8, #0b57d0);
 			color: #fff;
 			box-shadow: 0 5px 12px rgba(26, 115, 232, 0.32);
 		}
@@ -196,11 +229,16 @@
 			color: #445261;
 		}
 
+		.btn-clear:hover:not(:disabled) {
+			background: #f7f9fc;
+		}
+
 		.chat {
 			display: flex;
 			flex-direction: column;
 			min-height: 620px;
 			overflow: hidden;
+			background: linear-gradient(180deg, #ffffff, #fbfdff);
 		}
 
 		.chat-head {
@@ -209,13 +247,23 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			background: linear-gradient(180deg, #ffffff, #f9fbff);
+			background: linear-gradient(180deg, #ffffff, #f6faff);
+		}
+
+		.chat-title-wrap {
+			display: grid;
+			gap: 3px;
 		}
 
 		.chat-head h2 {
 			margin: 0;
 			font-size: 1.08rem;
 			font-weight: 700;
+		}
+
+		.chat-subtitle {
+			font-size: 0.82rem;
+			color: #6d7782;
 		}
 
 		.status {
@@ -241,7 +289,20 @@
 			gap: 12px;
 			flex: 1;
 			align-content: start;
-			background: #fcfdff;
+			background: linear-gradient(180deg, #fbfcff, #f8fbff);
+		}
+
+		.chat-body::-webkit-scrollbar {
+			width: 9px;
+		}
+
+		.chat-body::-webkit-scrollbar-track {
+			background: #edf2fb;
+		}
+
+		.chat-body::-webkit-scrollbar-thumb {
+			background: #c7d6f0;
+			border-radius: 999px;
 		}
 
 		.bubble {
@@ -251,12 +312,14 @@
 			line-height: 1.5;
 			white-space: pre-wrap;
 			border: 1px solid #dce3ed;
-			animation: pop 220ms ease;
+			animation: pop 320ms cubic-bezier(0.22, 1, 0.36, 1);
+			box-shadow: 0 5px 14px rgba(78, 108, 155, 0.08);
+			will-change: transform, opacity;
 		}
 
 		.bubble.user {
 			justify-self: end;
-			background: #e8f0fe;
+			background: linear-gradient(180deg, #eef4ff, #e8f0fe);
 			border-color: #c9dafc;
 		}
 
@@ -279,14 +342,15 @@
 			border-top: 1px dashed #d8e0eb;
 			padding-top: 10px;
 			display: grid;
-			gap: 10px;
+			gap: 11px;
 		}
 
 		.line-item {
 			border: 1px solid #dbe4ef;
 			border-radius: 12px;
-			padding: 10px;
+			padding: 11px;
 			background: #ffffff;
+			box-shadow: 0 2px 8px rgba(66, 94, 136, 0.06);
 		}
 
 		.line-item strong {
@@ -329,12 +393,14 @@
 
 		@keyframes pop {
 			from {
-				transform: scale(0.98);
+				transform: translateY(8px) scale(0.985);
 				opacity: 0;
+				filter: blur(1.5px);
 			}
 			to {
-				transform: scale(1);
+				transform: translateY(0) scale(1);
 				opacity: 1;
+				filter: blur(0);
 			}
 		}
 
@@ -355,6 +421,10 @@
 				flex-direction: column;
 				align-items: flex-start;
 				gap: 10px;
+			}
+
+			body {
+				padding: 16px;
 			}
 		}
 	</style>
@@ -397,7 +467,10 @@
 
 		<section class="panel chat">
 			<header class="chat-head">
-				<h2>SQL Explainer Chat</h2>
+				<div class="chat-title-wrap">
+					<h2>SQL Explainer Chat</h2>
+					<span class="chat-subtitle">Friendly line-by-line breakdown for beginners</span>
+				</div>
 				<span id="status" class="status">Ready</span>
 			</header>
 			<div id="chatBody" class="chat-body">
