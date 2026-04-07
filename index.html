@@ -175,6 +175,13 @@
 			line-height: 1.45;
 		}
 
+		input[readonly] {
+			background: #f1f3f4;
+			color: var(--muted);
+			cursor: default;
+			user-select: none;
+		}
+
 		input:focus,
 		textarea:focus {
 			outline: none;
@@ -450,7 +457,7 @@
 
 			<div class="field-group">
 				<label for="model">Model name</label>
-				<input id="model" value="gpt-4.1-mini" />
+				<input id="model" value="gpt-4.1-mini" readonly />
 			</div>
 
 			<div class="field-group">
